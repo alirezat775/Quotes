@@ -1,6 +1,6 @@
 package alirezat.app.quotes.base
 
-open abstract class UseCase<Q : UseCase.RequestValue, R : UseCase.ResponseValue, E : UseCase.ErrorValue> {
+abstract class UseCase<Q : UseCase.RequestValue, R : UseCase.ResponseValue, E : UseCase.ErrorValue> {
 
     private lateinit var mUseCaseCallback: UseCaseCallback<R, E>
 

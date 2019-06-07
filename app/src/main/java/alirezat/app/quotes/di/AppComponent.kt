@@ -5,11 +5,11 @@ import alirezat.app.quotes.di.module.AppModule
 import alirezat.app.quotes.di.module.DataManagerModule
 import android.app.Application
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [AppModule::class, DataManagerModule::class])
 interface AppComponent {
-
-    fun injectApplication(app: Application)
 
     fun injectMainActivity(mainActivity: MainActivity)
 

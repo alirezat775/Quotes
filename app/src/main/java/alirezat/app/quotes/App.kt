@@ -9,15 +9,15 @@ import android.app.Application
 class App : Application() {
 
     companion object {
-//        lateinit var appComponent: AppComponent
+        lateinit var appComponent: AppComponent
     }
 
     override fun onCreate() {
         super.onCreate()
-//        appComponent = DaggerAppComponent.builder()
-//            .appModule(AppModule(this))
-//            .dataManagerModule(DataManagerModule())
-//            .build()
+        appComponent = DaggerAppComponent.builder()
+            .dataManagerModule(DataManagerModule())
+            .appModule(AppModule(this))
+            .build()
     }
 
 }
