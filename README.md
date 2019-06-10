@@ -1,5 +1,6 @@
-#Implement sample app with clean architecture
+# Implement sample app with clean architecture
 
 ## library
--dagger2
--RXjava
+- dagger2
+- RXjava
+- Picasso
