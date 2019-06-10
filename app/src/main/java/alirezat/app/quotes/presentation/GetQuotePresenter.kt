@@ -22,6 +22,14 @@ class GetQuotePresenter @Inject constructor(private val getQuote: GetQuote) {
         getQuote.executeUseCase()?.subscribe(getObserver())
     }
 
+    fun onResume() {
+        getQuoteContract!!.shimmerView().startShimmer()
+    }
+
+    fun onPause() {
+        getQuoteContract!!.shimmerView().stopShimmer()
+    }
+
     private fun getObserver(): Observer<Quote> {
         return object : Observer<Quote> {
             override fun onComplete() {
@@ -39,5 +47,4 @@ class GetQuotePresenter @Inject constructor(private val getQuote: GetQuote) {
             }
         }
     }
-
 }

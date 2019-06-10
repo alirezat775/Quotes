@@ -3,9 +3,7 @@ package alirezat.app.quotes.domain.useCase
 import alirezat.app.quotes.data.IDataManager
 import alirezat.app.quotes.data.model.Quote
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class GetQuote constructor(private val dataManager: IDataManager) {

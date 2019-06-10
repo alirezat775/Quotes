@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.facebook.shimmer.ShimmerFrameLayout
 import javax.inject.Inject
 
 
@@ -18,6 +19,13 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
 
     @BindView(R.id.quote)
     lateinit var quoteTv: TextView
+
+    @BindView(R.id.shimmer_view_container)
+    lateinit var shimmerViewContainer: ShimmerFrameLayout
+
+    override fun shimmerView(): ShimmerFrameLayout {
+        return shimmerViewContainer
+    }
 
     override fun getQuote(quote: Quote?) {
         Log.d(TAG, quote?.quoteText)
@@ -44,8 +52,19 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         getQuotePresenter.getQuote()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getQuotePresenter.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        getQuotePresenter.onPause()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         getQuotePresenter.onDestroyed()
     }
+
 }
