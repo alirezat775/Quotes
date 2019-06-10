@@ -7,7 +7,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-class RemoteRepository {
+class RemoteRepository : IRemote {
 
     private val BASE_URL: String = "https://quota.glitch.me"
 
@@ -23,13 +23,18 @@ class RemoteRepository {
         return provideRetrofit().create(Api::class.java)
     }
 
-    fun getQuote(): Observable<QuoteEntity> {
+    override fun getQuote(): Observable<QuoteEntity> {
         return provideService().getQuote()
     }
 
-    interface Api {
+    override fun getImageUrl(): String {
+        val rand = (1..1000).random()
+        return "https://picsum.photos/id/$rand/1080/1920?blur=9"
+    }
 
+    interface Api {
         @GET("/random")
         fun getQuote(): Observable<QuoteEntity>
+
     }
 }

@@ -7,6 +7,7 @@ import io.reactivex.Observable
 class DataManager(private val remoteRepository: RemoteRepository) : IDataManager {
 
     override fun getNewQuotes(): Observable<QuoteModel> {
-        return remoteRepository.getQuote().map { t -> QuoteModel(t.quoteText, t.quoteAuthor) }
+        return remoteRepository.getQuote()
+            .map { t -> QuoteModel(t.quoteText, t.quoteAuthor, remoteRepository.getImageUrl()) }
     }
 }

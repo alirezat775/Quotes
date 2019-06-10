@@ -5,11 +5,13 @@ import alirezat.app.quotes.R
 import alirezat.app.quotes.domain.model.QuoteModel
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 
@@ -19,6 +21,9 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
 
     @BindView(R.id.quote_tv)
     lateinit var quoteTv: TextView
+
+    @BindView(R.id.quote_img)
+    lateinit var quoteImg: ImageView
 
     @BindView(R.id.shimmer_view_container)
     lateinit var shimmerViewContainer: ShimmerFrameLayout
@@ -30,6 +35,9 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
     override fun getQuote(quoteModel: QuoteModel?) {
         Log.d(TAG, quoteModel?.quoteText)
         quoteTv.text = quoteModel?.quoteText
+        Picasso.get()
+            .load(quoteModel?.quoteImage)
+            .into(quoteImg)
     }
 
     override fun getError(message: String?) {
