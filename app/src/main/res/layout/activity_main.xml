@@ -19,12 +19,12 @@
             app:shimmer_duration="10000">
 
         <TextView
-                android:id="@+id/quote"
+                android:id="@+id/quote_tv"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
-                android:textColor="#444"/>
+                android:textColor="#212121"/>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 

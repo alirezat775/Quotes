@@ -2,7 +2,7 @@ package alirezat.app.quotes.presentation
 
 import alirezat.app.quotes.App
 import alirezat.app.quotes.R
-import alirezat.app.quotes.data.model.Quote
+import alirezat.app.quotes.domain.model.QuoteModel
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -17,7 +17,7 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
 
     private val TAG: String = this::class.java.name
 
-    @BindView(R.id.quote)
+    @BindView(R.id.quote_tv)
     lateinit var quoteTv: TextView
 
     @BindView(R.id.shimmer_view_container)
@@ -27,9 +27,9 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         return shimmerViewContainer
     }
 
-    override fun getQuote(quote: Quote?) {
-        Log.d(TAG, quote?.quoteText)
-        quoteTv.text = quote?.quoteText
+    override fun getQuote(quoteModel: QuoteModel?) {
+        Log.d(TAG, quoteModel?.quoteText)
+        quoteTv.text = quoteModel?.quoteText
     }
 
     override fun getError(message: String?) {
@@ -66,5 +66,4 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         super.onDestroy()
         getQuotePresenter.onDestroyed()
     }
-
 }

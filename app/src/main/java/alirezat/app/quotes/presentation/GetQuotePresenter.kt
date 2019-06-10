@@ -1,6 +1,6 @@
 package alirezat.app.quotes.presentation
 
-import alirezat.app.quotes.data.model.Quote
+import alirezat.app.quotes.domain.model.QuoteModel
 import alirezat.app.quotes.domain.useCase.GetQuote
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -30,15 +30,15 @@ class GetQuotePresenter @Inject constructor(private val getQuote: GetQuote) {
         getQuoteContract!!.shimmerView().stopShimmer()
     }
 
-    private fun getObserver(): Observer<Quote> {
-        return object : Observer<Quote> {
+    private fun getObserver(): Observer<QuoteModel> {
+        return object : Observer<QuoteModel> {
             override fun onComplete() {
             }
 
             override fun onSubscribe(d: Disposable) {
             }
 
-            override fun onNext(t: Quote) {
+            override fun onNext(t: QuoteModel) {
                 getQuoteContract?.getQuote(t)
             }
 
