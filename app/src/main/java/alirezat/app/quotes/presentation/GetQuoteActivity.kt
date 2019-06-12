@@ -6,15 +6,19 @@ import alirezat.app.quotes.domain.model.QuoteModel
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 import javax.inject.Inject
 
 class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
 
     private val TAG: String = this::class.java.name
+
+    @Inject
+    lateinit var getQuotePresenter: GetQuotePresenter
 
     override fun shimmerView(): ShimmerFrameLayout {
         return shimmer_view_container
@@ -23,8 +27,10 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
     override fun getQuote(quoteModel: QuoteModel?) {
         Log.d(TAG, quoteModel?.quoteText)
         quote_tv.text = quoteModel?.quoteText
+        quote_author_tv.text = quoteModel?.quoteAuthor
         Picasso.get()
             .load(quoteModel?.quoteImage)
+            .placeholder(R.drawable.default_placeholder)
             .into(quote_img)
         swipe_refresh.isRefreshing = false
     }
@@ -32,9 +38,6 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
     override fun getError(message: String?) {
         Log.d(TAG, message)
     }
-
-    @Inject
-    lateinit var getQuotePresenter: GetQuotePresenter
 
     private fun performDependencyInjection() {
         App.appComponent.injectMainActivity(this)
