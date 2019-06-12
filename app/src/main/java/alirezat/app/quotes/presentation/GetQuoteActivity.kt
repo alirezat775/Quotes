@@ -7,10 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Exception
 import javax.inject.Inject
 
 class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {

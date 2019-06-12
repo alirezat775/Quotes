@@ -2,6 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-allopen'
+
+allOpen {
+    annotation("alirezat.app.quotes.helper.TestOpen")
+}
 
 android {
     compileSdkVersion 28
@@ -14,7 +19,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -57,13 +64,15 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 //================================================dagger================================================================
     implementation "com.google.dagger:dagger:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
     implementation "com.google.dagger:dagger-android-support:$daggerVer"
     kapt "com.google.dagger:dagger-android-processor:$daggerVer"
-    kapt "com.google.dagger:dagger-compiler:$daggerVer"
 //==========================================leakCanary==================================================================
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
 //================================================test==================================================================
     testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation 'org.mockito:mockito-core:2.23.4'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
