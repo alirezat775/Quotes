@@ -6,6 +6,7 @@ import alirezat.app.quotes.domain.model.QuoteModel
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,7 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         Picasso.get()
             .load(quoteModel?.quoteImage)
             .into(quote_img)
+        swipe_refresh.isRefreshing = false
     }
 
     override fun getError(message: String?) {
@@ -44,6 +46,11 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         setContentView(R.layout.activity_main)
         getQuotePresenter.onCreated(this)
         getQuotePresenter.getQuote()
+        refreshData()
+    }
+
+    private fun refreshData() {
+        swipe_refresh.setOnRefreshListener { getQuotePresenter.getQuote() }
     }
 
     override fun onResume() {

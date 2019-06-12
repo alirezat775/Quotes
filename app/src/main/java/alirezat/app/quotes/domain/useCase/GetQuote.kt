@@ -9,8 +9,6 @@ import io.reactivex.schedulers.Schedulers
 
 class GetQuote constructor(private val dataManager: IDataManager) {
 
-    private val TAG: String = this::class.java.name
-
     fun executeUseCase(): Observable<QuoteModel>? {
         return dataManager.getNewQuotes()
             .subscribeOn(Schedulers.io())

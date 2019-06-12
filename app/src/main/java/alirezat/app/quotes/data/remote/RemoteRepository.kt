@@ -1,5 +1,6 @@
 package alirezat.app.quotes.data.remote
 
+import alirezat.app.quotes.BuildConfig
 import alirezat.app.quotes.data.entity.QuoteEntity
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -9,13 +10,11 @@ import retrofit2.http.GET
 
 class RemoteRepository : IRemote {
 
-    private val BASE_URL: String = "https://quota.glitch.me"
-
     private fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_QUOTE_API)
             .build()
     }
 
@@ -28,13 +27,12 @@ class RemoteRepository : IRemote {
     }
 
     override fun getImageUrl(): String {
-        val rand = (1..1000).random()
-        return "https://picsum.photos/id/$rand/1080/1920?blur=1"
+        val rand = (1..500).random()
+        return "https://picsum.photos/id/$rand/480/720?blur=2"
     }
 
     interface Api {
         @GET("/random")
         fun getQuote(): Observable<QuoteEntity>
-
     }
 }

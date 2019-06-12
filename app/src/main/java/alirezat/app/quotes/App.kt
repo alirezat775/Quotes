@@ -18,8 +18,5 @@ class App : Application() {
             .dataManagerModule(DataManagerModule())
             .appModule(AppModule(this))
             .build()
-
-
     }
-
 }

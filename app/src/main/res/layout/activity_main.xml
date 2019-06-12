@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.GetQuoteActivity">
-
-    <ImageView
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:id="@+id/quote_img"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
     <FrameLayout
-            android:background="@drawable/shadow"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-    </FrameLayout>
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_view_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:padding="16dp"
-            app:shimmer_duration="5000">
-
-        <TextView
-                android:layout_margin="16dp"
-                android:id="@+id/quote_tv"
+        <ImageView
                 android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/quote_img"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <FrameLayout
+                android:background="@drawable/shadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        </FrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:textColor="#212121"/>
+                android:layout_gravity="top|center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="16dp"
+                app:shimmer_duration="5000">
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+            <TextView
+                    android:layout_margin="16dp"
+                    android:id="@+id/quote_tv"
+                    android:gravity="top|center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/white"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </FrameLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

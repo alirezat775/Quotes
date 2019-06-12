@@ -10,11 +10,10 @@ import javax.inject.Inject
 class GetQuotePresenter @Inject constructor(private val getQuote: GetQuote) {
 
     var getQuoteContract: GetQuoteContract? = null
-    private lateinit var compositeDisposable: CompositeDisposable
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     fun onCreated(getQuoteContract: GetQuoteContract) {
         this.getQuoteContract = getQuoteContract
-        compositeDisposable = CompositeDisposable()
     }
 
     fun onDestroyed() {
