@@ -29,7 +29,7 @@ class RemoteRepository : IRemote {
 
     override fun getImageUrl(): String {
         val rand = (1..1000).random()
-        return "https://picsum.photos/id/$rand/1080/1920?blur=9"
+        return "https://picsum.photos/id/$rand/1080/1920?blur=1"
     }
 
     interface Api {

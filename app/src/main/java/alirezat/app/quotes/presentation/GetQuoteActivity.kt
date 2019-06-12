@@ -5,39 +5,26 @@ import alirezat.app.quotes.R
 import alirezat.app.quotes.domain.model.QuoteModel
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
-
 
 class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
 
     private val TAG: String = this::class.java.name
 
-    @BindView(R.id.quote_tv)
-    lateinit var quoteTv: TextView
-
-    @BindView(R.id.quote_img)
-    lateinit var quoteImg: ImageView
-
-    @BindView(R.id.shimmer_view_container)
-    lateinit var shimmerViewContainer: ShimmerFrameLayout
-
     override fun shimmerView(): ShimmerFrameLayout {
-        return shimmerViewContainer
+        return shimmer_view_container
     }
 
     override fun getQuote(quoteModel: QuoteModel?) {
         Log.d(TAG, quoteModel?.quoteText)
-        quoteTv.text = quoteModel?.quoteText
+        quote_tv.text = quoteModel?.quoteText
         Picasso.get()
             .load(quoteModel?.quoteImage)
-            .into(quoteImg)
+            .into(quote_img)
     }
 
     override fun getError(message: String?) {
@@ -55,7 +42,6 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         performDependencyInjection()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ButterKnife.bind(this)
         getQuotePresenter.onCreated(this)
         getQuotePresenter.getQuote()
     }

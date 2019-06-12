@@ -27,7 +27,6 @@ android {
 }
 
 def daggerVer = '2.23.1'
-def butterKnifeVer = '10.1.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -55,9 +54,6 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$daggerVer"
     kapt "com.google.dagger:dagger-android-processor:$daggerVer"
     kapt "com.google.dagger:dagger-compiler:$daggerVer"
-//================================================butterknife===========================================================
-    implementation "com.jakewharton:butterknife:$butterKnifeVer"
-    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVer"
 //==========================================leakCanary==================================================================
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
 //================================================test==================================================================
