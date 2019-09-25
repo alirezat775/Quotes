@@ -6,6 +6,7 @@ import alirezat.app.quotes.domain.model.QuoteModel
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.charbgr.seismicinterceptor.SeismicInterceptor
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,6 +49,8 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
         getQuotePresenter.onCreated(this)
         getQuotePresenter.getQuote()
         refreshData()
+
+        SeismicInterceptor.start(this)
     }
 
     private fun refreshData() {
@@ -67,5 +70,6 @@ class GetQuoteActivity : AppCompatActivity(), GetQuoteContract {
     override fun onDestroy() {
         super.onDestroy()
         getQuotePresenter.onDestroyed()
+        SeismicInterceptor.stop()
     }
 }

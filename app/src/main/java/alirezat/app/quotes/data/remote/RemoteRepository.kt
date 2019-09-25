@@ -1,9 +1,11 @@
 package alirezat.app.quotes.data.remote
 
 import alirezat.app.quotes.BuildConfig
-import alirezat.app.quotes.helper.TestOpen
 import alirezat.app.quotes.data.entity.QuoteEntity
+import alirezat.app.quotes.helper.TestOpen
+import com.charbgr.seismicinterceptor.SeismicInterceptor
 import io.reactivex.Observable
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,9 +15,14 @@ import retrofit2.http.GET
 class RemoteRepository : IRemote {
 
     private fun provideRetrofit(): Retrofit {
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(SeismicInterceptor.create())
+            .build()
+
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
             .baseUrl(BuildConfig.BASE_QUOTE_API)
             .build()
     }
